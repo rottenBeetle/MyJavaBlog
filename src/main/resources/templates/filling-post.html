@@ -8,42 +8,50 @@
 <div th:insert="blocks/header :: header"></div>
 <div class="container">
     <main>
-<!--        <div class="py-5 text-center">-->
-<!--            <img class="d-block mx-auto mb-4" src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">-->
-<!--            <h2>О чем вы хотите рассказать?</h2>-->
-<!--        </div>-->
+        <!--        <div class="py-5 text-center">-->
+        <!--            <img class="d-block mx-auto mb-4" src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">-->
+        <!--            <h2>О чем вы хотите рассказать?</h2>-->
+        <!--        </div>-->
         <br>
         <br>
-     <!--  class = "col-lg-8"-->
-            <div>
-                <h4 class="mb-3">Создание блога</h4>
-                <form class="needs-validation" novalidate="" action="/blog/addPost" method="post">
-                    <div class="row g-3">
-                        <div class="col-sm-6">
-                            <label for="title" class="form-label">Заголовок:</label>
-                            <input name="title" type="text" class="form-control" id="title" placeholder="Название статьи" value="" required="" minlength="5" maxlength="60">
-                            <div class="invalid-feedback">
-                                Введите своё настоящее имя
-                            </div>
-                        </div>
+        <!--  class = "col-lg-8"-->
+        <div>
+            <h4 class="mb-3">Создание блога</h4>
+            <form class="needs-validation" novalidate="" action="/blog/addPost" method="post">
+                <!--Для обновления,а не сохранения нового обьекта в базе данных-->
+                <input type="hidden" th:value="${post.id}" name="id"/>
 
-                        <div class="form-group">
-                            <label for="fulltext">Анонс:</label>
-                            <textarea name="anons" class="form-control" id="anons" rows="3" placeholder="Кратко о чем ты хочешь написать" required="" minlength="20" maxlength="300"></textarea>
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                        <label for="title" class="form-label">Заголовок:</label>
+                        <input name="title" type="text" class="form-control" id="title" placeholder="Название статьи"
+                               th:value="${post.title}" required="" minlength="5" maxlength="100">
+                        <div class="invalid-feedback">
+                            Введите своё настоящее имя
                         </div>
-
-                        <div class="form-group">
-                            <label for="fulltext">Содержимое:</label>
-                            <textarea name="fulltext" class="form-control" id="fulltext" rows="10" placeholder="Расскажи что-нибудь интересное" required=""minlength="20"></textarea>
-                        </div>
-
                     </div>
 
-                    <hr class="my-4">
+                    <div class="form-group">
+                        <label for="fulltext">Анонс:</label>
+                        <textarea name="anons" class="form-control" id="anons" rows="3"
+                                  placeholder="Кратко о чем ты хочешь написать" required="" minlength="20"
+                                  maxlength="300" th:field="${post.anons}"></textarea>
+                    </div>
 
-                    <button class="w-100 btn btn-primary btn-lg" type="submit">Добавить статью</button>
-                </form>
-            </div>
+                    <div class="form-group">
+                        <label for="fullText">Содержимое:</label>
+                        <textarea name="fullText" class="form-control" id="fulltext" rows="10"
+                                  placeholder="Расскажи что-нибудь интересное" required="" minlength="20"
+                                  th:field="${post.fullText}"></textarea>
+                    </div>
+
+                </div>
+
+                <hr class="my-4">
+
+                <button class="w-100 btn btn-primary btn-lg" type="submit">Добавить статью</button>
+            </form>
+        </div>
     </main>
 
 </div>

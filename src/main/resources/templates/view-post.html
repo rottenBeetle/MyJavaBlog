@@ -17,8 +17,9 @@
     <p class="fs-5" th:text="${post.date}"/>
 
     <a href="/blog" class="btn btn-primary my-2">Назад</a>
+    <a th:href="'/blog/editPost/' + ${post.id}" class="btn btn-primary my-2">Реадктировать</a>
+   
 </div>
-
 
 <div th:insert="blocks/footer :: footer"></div>
 </body>

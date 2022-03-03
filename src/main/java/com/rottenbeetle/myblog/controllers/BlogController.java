@@ -34,7 +34,8 @@ public class BlogController {
     }
 
     @PostMapping("/addPost")
-    public String addPost(@RequestParam("title") String title, @RequestParam("fulltext") String fullText,@RequestParam("anons") String anons,Model model){
+    public String addPost(@RequestParam("title") String title, @RequestParam("fullText") String fullText,
+                          @RequestParam("anons") String anons,Model model){
         Date dateNow = new Date();
         SimpleDateFormat formatForDateNow = new SimpleDateFormat("yyyy.MM.dd");
         Post post = new Post(title,anons,fullText,0,formatForDateNow.format(dateNow));
@@ -59,4 +60,13 @@ public class BlogController {
         model.addAttribute("post",post);
         return "view-post";
     }
+
+    @GetMapping("/editPost/{id}")
+    public String editPost(Model model, @PathVariable long id){
+        Post post = postRepository.findById(id).get();
+        model.addAttribute("post",post);
+        return "filling-post";
+    }
+
+
 }
