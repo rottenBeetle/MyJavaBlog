@@ -5,15 +5,13 @@ import com.rottenbeetle.myblog.repo.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/blog")
@@ -45,9 +43,20 @@ public class BlogController {
     }
 
 
-//    @GetMapping("/blog/{id}")
-//    public String getPostById(@PathVariable int id){
-//
-//        return "blog-main";
-//    }
+    @GetMapping("/{id}")
+    public String getPostById(@PathVariable long id,Model model){
+        if (!postRepository.existsById(id)){
+            return "redirect:/blog/";
+        }
+        Optional<Post> postOptional = postRepository.findById(id);
+        Post post = new Post();
+        if (postOptional.isPresent()){
+             post = postOptional.get();
+             //Нужно доработать
+             post.setViews(post.getViews() + 1);
+             postRepository.save(post);
+        }
+        model.addAttribute("post",post);
+        return "view-post";
+    }
 }
