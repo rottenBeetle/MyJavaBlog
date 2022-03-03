@@ -18,7 +18,7 @@
 
     <a href="/blog" class="btn btn-primary my-2">Назад</a>
     <a th:href="'/blog/editPost/' + ${post.id}" class="btn btn-primary my-2">Реадктировать</a>
-   
+    <a th:href="'/blog/deletePost/' + ${post.id}" class="btn btn-primary my-2">Удалить</a>
 </div>
 
 <div th:insert="blocks/footer :: footer"></div>

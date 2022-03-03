@@ -68,5 +68,11 @@ public class BlogController {
         return "filling-post";
     }
 
+    @GetMapping("/deletePost/{id}")
+    public String deletePost(@PathVariable long id){
+        postRepository.deleteById(id);
+        return "redirect:/blog/";
+    }
+
 
 }
