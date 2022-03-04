@@ -19,7 +19,7 @@
             <h4 class="mb-3">Создание блога</h4>
             <form class="needs-validation" novalidate="" action="/blog/addPost" method="post">
                 <!--Для обновления,а не сохранения нового обьекта в базе данных-->
-                <input type="hidden" th:value="${post.id}" name="id"/>
+                <input type="hidden" th:value="${post.id}" required="false" name="id"/>
 
                 <div class="row g-3">
                     <div class="col-sm-6">

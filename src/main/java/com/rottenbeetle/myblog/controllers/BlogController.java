@@ -29,7 +29,9 @@ public class BlogController {
     }
 
     @GetMapping("/fillingPost")
-    public String fillPost(){
+    public String fillPost(Model model){
+       Post post = new Post();
+       model.addAttribute("post",post);
         return "filling-post";
     }
 
@@ -68,7 +70,7 @@ public class BlogController {
         return "filling-post";
     }
 
-    @GetMapping("/deletePost/{id}")
+    @PostMapping("/deletePost/{id}")
     public String deletePost(@PathVariable long id){
         postRepository.deleteById(id);
         return "redirect:/blog/";

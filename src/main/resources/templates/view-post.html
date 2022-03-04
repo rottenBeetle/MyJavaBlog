@@ -15,10 +15,13 @@
     <p class="fs-3" th:text="${post.fullText}"/>
     <p class="fs-4" th:text="'Просмотров: ' + ${post.views}"/>
     <p class="fs-5" th:text="${post.date}"/>
+    
+    <form th:action="'/blog/deletePost/' + ${post.id}" method="post">
+        <a href="/blog" class="btn btn-primary my-2">Назад</a>
+        <a th:href="'/blog/editPost/' + ${post.id}" class="btn btn-primary my-2">Реадктировать</a>
+        <button type="submit" class="btn btn-primary my-2">Удалить</button>
+    </form>
 
-    <a href="/blog" class="btn btn-primary my-2">Назад</a>
-    <a th:href="'/blog/editPost/' + ${post.id}" class="btn btn-primary my-2">Реадктировать</a>
-    <a th:href="'/blog/deletePost/' + ${post.id}" class="btn btn-primary my-2">Удалить</a>
 </div>
 
 <div th:insert="blocks/footer :: footer"></div>

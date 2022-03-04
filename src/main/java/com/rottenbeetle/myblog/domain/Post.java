@@ -24,6 +24,7 @@ public class Post {
     private String fullText;
     private int views;
     private String date;
+    private String category;
 
     public Post(String title, String anons, String fullText, int views, String date) {
         this.title = title;
