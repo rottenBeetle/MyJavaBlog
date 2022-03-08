@@ -12,6 +12,18 @@
     <h1>Статьи: </h1>
     <a href="/blog/fillingPost" class="btn btn-primary my-2">Добавить статью</a>
 
+<form action="/blog/filter" method="post">
+    <div class="col-sm-6">
+        <div class="input-group">
+            <input type="text" th:value="${filter}" name="filter" class="form-control col-sm-6"
+                   placeholder="Что вы хотите найти?" minlength="3" maxlength="100">
+            <input class="btn btn-outline-secondary" value="Очистить" onclick="window.location.href='/blog'"
+                   type="button"/>
+            <button class="btn btn-outline-secondary" type="submit">Искать</button>
+        </div>
+    </div>
+</form>
+
     <div th:each="post : ${posts}" class="alert alert-info mt-2">
         <h2 th:text="${post.title}"/>
         <p th:text="${post.anons}"/>

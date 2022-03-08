@@ -26,9 +26,6 @@
                         <label for="title" class="form-label">Заголовок:</label>
                         <input name="title" type="text" class="form-control" id="title" placeholder="Название статьи"
                                th:value="${post.title}" required="" minlength="5" maxlength="100">
-                        <div class="invalid-feedback">
-                            Введите своё настоящее имя
-                        </div>
                     </div>
 
                     <div class="form-group">
@@ -44,7 +41,6 @@
                                   placeholder="Расскажи что-нибудь интересное" required="" minlength="20"
                                   th:field="${post.fullText}"></textarea>
                     </div>
-
                 </div>
 
                 <hr class="my-4">
