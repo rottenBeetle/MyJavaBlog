@@ -1,10 +1,12 @@
 <div th:fragment="header">
     <header class="p-3 bg-dark text-white">
+
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                 <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
                     <span class="fs-4">MyJavaBlog</span>
-                    <svg class="bi me-2" width="40" height="32" role="img" aria-label="MyJavaBlog"><use xlink:href="https://w1.pngwing.com/pngs/647/324/png-transparent-oracle-logo-java-java-platform-standard-edition-java-user-group-computer-software-netbeans-free-java-implementations-computer-program.png"></use></svg>
+                    <svg class="bi me-2" width="40" height="32" role="img" aria-label="MyJavaBlog">
+                        <use xlink:href="https://w1.pngwing.com/pngs/647/324/png-transparent-oracle-logo-java-java-platform-standard-edition-java-user-group-computer-software-netbeans-free-java-implementations-computer-program.png"></use></svg>
                 </a>
 
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
@@ -18,8 +20,12 @@
                 </form>
 
                 <div class="text-end">
-                    <button type="button" class="btn btn-outline-light me-2">Login</button>
-                    <button type="button" class="btn btn-warning">Sign-up</button>
+                    <button type="button" class="btn btn-outline-light me-2" onclick="window.location.href='/login'">Войти</button>
+                    <button type="button" class="btn btn-warning">Регистарция</button>
+
+                    <form th:action="@{/logout}" method="post">
+                        <input type="submit" value="Выйти"/>
+                    </form>
                 </div>
             </div>
         </div>

@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 @Controller
 @RequestMapping("/blog")
 public class BlogController {
-
     @Autowired
     private PostRepository postRepository;
 
