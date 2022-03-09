@@ -8,16 +8,11 @@
 <div th:insert="blocks/header :: header"></div>
 <div class="container">
     <main>
-        <!--        <div class="py-5 text-center">-->
-        <!--            <img class="d-block mx-auto mb-4" src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">-->
-        <!--            <h2>О чем вы хотите рассказать?</h2>-->
-        <!--        </div>-->
         <br>
         <br>
-        <!--  class = "col-lg-8"-->
         <div>
             <h4 class="mb-3">Создание блога</h4>
-            <form class="needs-validation" novalidate="" action="/blog/addPost" method="post">
+            <form class="needs-validation" novalidate="" th:action="@{/blog/addPost}" method="post">
                 <!--Для обновления,а не сохранения нового обьекта в базе данных-->
                 <input type="hidden" th:value="${post.id}" required="false" name="id"/>
 

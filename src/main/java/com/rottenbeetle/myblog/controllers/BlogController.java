@@ -39,7 +39,7 @@ public class BlogController {
         Date dateNow = new Date();
         SimpleDateFormat formatForDateNow = new SimpleDateFormat("yyyy.MM.dd");
         //regexp для лишних тегов
-        String unnecessaryWord = "(?<!\\S)(?:без|это|как|так|и|в|над|к|до|не|на|но|за|то|с|ли|а|во|от|со|для|о|же|ну|вы|бы|что|кто|он|она)(?!\\S)|\\pP ";
+        String unnecessaryWord = "(?<!\\S)(?:без|это|как|так|и|в|над|к|до|не|на|но|за|то|с|ли|а|во|от|со|для|о|же|ну|вы|бы|что|кто|он|она)(?!\\S)|\\pP|\\. ";
         //Создание тэгов для поиска
         List<String> listTags = new ArrayList<>();
         String filterTitle = title.replaceAll(unnecessaryWord, "");

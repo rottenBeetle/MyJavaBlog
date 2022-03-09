@@ -12,7 +12,7 @@
     <h1>Статьи: </h1>
     <a href="/blog/fillingPost" class="btn btn-primary my-2">Добавить статью</a>
 
-<form action="/blog/filter" method="post">
+<form th:action="@{/blog/filter}" method="post">
     <div class="col-sm-6">
         <div class="input-group">
             <input type="text" th:value="${filter}" name="filter" class="form-control col-sm-6"

@@ -24,7 +24,8 @@ public class Post {
     private String fullText;
     private int views;
     private String date;
-    @ElementCollection
+    @ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "post_tags", joinColumns = @JoinColumn(name = "post_id"))
     private List<String> tags;
 
     public Post(String title, String anons, String fullText, int views, String date, List<String> tags) {
