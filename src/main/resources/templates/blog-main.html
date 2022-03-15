@@ -27,6 +27,7 @@
     <div th:each="post : ${posts}" class="alert alert-info mt-2">
         <h2 th:text="${post.title}"/>
         <p th:text="${post.anons}"/>
+        <p th:text="${post.username}"/>
         <a class="btn btn-warning" th:href="'/blog/' + ${post.id}">Детальнее</a>
     </div>
 </div>

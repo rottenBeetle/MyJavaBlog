@@ -27,13 +27,21 @@ public class Post {
     @ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "post_tags", joinColumns = @JoinColumn(name = "post_id"))
     private List<String> tags;
+    @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH},fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    public Post(String title, String anons, String fullText, int views, String date, List<String> tags) {
+    public String getUsername(){
+        return user != null ? user.getUsername() : "Неизвестный";
+    }
+
+    public Post(String title, String anons, String fullText, int views, String date, List<String> tags, User user) {
         this.title = title;
         this.anons = anons;
         this.fullText = fullText;
         this.views = views;
         this.date = date;
         this.tags = tags;
+        this.user = user;
     }
 }
