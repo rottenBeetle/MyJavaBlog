@@ -16,9 +16,7 @@ import java.util.stream.Collectors;
 @Controller
 @RequestMapping("/blog")
 public class BlogController {
-
     private final PostRepository postRepository;
-
 
     public BlogController(PostRepository postRepository) {
         this.postRepository = postRepository;
