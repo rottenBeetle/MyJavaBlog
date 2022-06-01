@@ -13,17 +13,14 @@ import java.util.List;
 @Controller
 public class MainController {
 
-    private final ProductRepository productRepository;
-
-    public MainController(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
 
     @GetMapping("")
     public String mainPage(Model model) {
-        List<Product> productList = productRepository.findAll();
-        model.addAttribute("productList", productList);
-        return "index";
+        return "redirect:/product";
     }
 
+    @GetMapping("/about")
+    public String aboutPage() {
+        return "about";
+    }
 }

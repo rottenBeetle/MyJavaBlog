@@ -1,7 +1,9 @@
 package com.rottenbeetle.myblog.controllers;
 
 import com.rottenbeetle.myblog.domain.Product;
-import com.rottenbeetle.myblog.repo.ProductRepository;
+import com.rottenbeetle.myblog.service.ProductServiceImpl;
+import org.springframework.data.domain.Page;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,17 +15,16 @@ import java.util.Optional;
 @RequestMapping("/product")
 public class ProductController {
 
-    private final ProductRepository productRepository;
+    private final ProductServiceImpl productService;
 
-    public ProductController(ProductRepository productRepository) {
-        this.productRepository = productRepository;
+    public ProductController(ProductServiceImpl productService) {
+        this.productService = productService;
     }
 
+
     @GetMapping("")
-    public String mainPage(Model model) {
-        List<Product> productList = productRepository.findAll();
-        model.addAttribute("productList", productList);
-        return "index";
+    public String mainPage(Model model,@Param("keyword") String keyword) {
+        return findPaginated(1,keyword,model);
     }
 
     @GetMapping("/fillingCourse")
@@ -42,17 +43,16 @@ public class ProductController {
                 refImage, price, category, refCourse);
         if (!id.isEmpty())
             product.setId(Long.valueOf(id));
-        productRepository.save(product);
+        productService.saveProduct(product);
         return "redirect:/";
     }
 
     @GetMapping("/{id}")
     public String getProductById(@PathVariable long id, Model model) {
-        if (!productRepository.existsById(id)) {
-            return "redirect:/blog/";
-        }
-        Optional<Product> productOptional = productRepository.findById(id);
-        Product product = productOptional.get();
+//        if (!productRepository.existsById(id)) {
+//            return "redirect:/blog/";
+//        }
+        Product product = productService.getProductById(id);
 
         model.addAttribute("product", product);
         return "view-product";
@@ -60,14 +60,32 @@ public class ProductController {
 
     @GetMapping("/editProduct/{id}")
     public String editPost(Model model, @PathVariable long id) {
-        Product product = productRepository.findById(id).get();
+        Product product = productService.getProductById(id);
         model.addAttribute("product", product);
         return "add-course";
     }
 
     @PostMapping("/deleteProduct/{id}")
     public String deletePost(@PathVariable long id) {
-        productRepository.deleteById(id);
+        productService.deleteProduct(id);
         return "redirect:/";
+    }
+
+    @GetMapping("/page/{pageNo}")
+    public String findPaginated(@PathVariable(value = "pageNo") int pageNo,
+                                @RequestParam(value = "keyword", required = false) String keyword,
+                                Model model){
+        int pageSize = 15;
+        Page<Product> page = productService.findPaginated(pageNo,pageSize,keyword);
+
+        List<Product> productList = page.getContent();
+        model.addAttribute("currentPage",pageNo);
+        model.addAttribute("totalPages",page.getTotalPages());
+        model.addAttribute("totalItems",page.getTotalElements());
+
+        model.addAttribute("keyword",keyword);
+
+        model.addAttribute("productList", productList);
+        return "index";
     }
 }
