@@ -1,5 +1,6 @@
 package com.rottenbeetle.myblog.service;
 
+import com.rottenbeetle.myblog.domain.Category;
 import com.rottenbeetle.myblog.domain.Product;
 import org.springframework.data.domain.Page;
 
@@ -10,5 +11,5 @@ public interface ProductService {
     Product getProductById(Long id);
     void saveProduct(Product product);
     void deleteProduct(Long id);
-    Page<Product> findPaginated(int pageNo, int pageSize, String keyword);
+    Page<Product> findPaginated(int pageNo, int pageSize, String keyword, String category);
 }

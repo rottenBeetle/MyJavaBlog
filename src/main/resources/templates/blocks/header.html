@@ -1,4 +1,4 @@
-<div th:fragment="header">
+<div th:fragment="header" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <header class="p-3 bg-dark text-white">
 
         <div class="container">
@@ -13,7 +13,9 @@
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <li><a href="/" class="nav-link px-2 text-secondary">Главная</a></li>
                     <li><a href="/blog" class="nav-link px-2 text-white">Блог</a></li>
-                    <li><a href="/user/list" class="nav-link px-2 text-white">Cписок пользователей</a></li>
+                    <div sec:authorize="hasAuthority('ADMIN')">
+                        <li><a href="/user/list" class="nav-link px-2 text-white">Cписок пользователей</a></li>
+                    </div>
                     <li><a href="/about" class="nav-link px-2 text-white">О нас</a></li>
                 </ul>
 

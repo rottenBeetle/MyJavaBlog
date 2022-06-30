@@ -4,10 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -22,16 +19,21 @@ public class Product {
     private String fullDescription;
     private String refImage;
     private int price;
-    private String category;
+    @OneToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    @JoinColumn(name = "category_id")
+    private Category category;
+    private String author;
     private String refCourse;
 
-    public Product(String title, String shortDescription, String fullDescription, String refImage, int price, String category, String refCourse) {
+    public Product(String title, String shortDescription, String fullDescription, String refImage, int price, Category category, String author, String refCourse) {
         this.title = title;
         this.shortDescription = shortDescription;
         this.fullDescription = fullDescription;
         this.refImage = refImage;
         this.price = price;
         this.category = category;
+        this.author = author;
         this.refCourse = refCourse;
     }
+
 }
