@@ -23,16 +23,26 @@ public class RegistrationController {
     }
 
     @PostMapping("/registration")
-    public String addUser(User user, Model model){
+    public String addUser(User user,@RequestParam() String repeatPassword, Model model){
         User userFromDb = userRepository.findByUsername(user.getUsername());
-//        if (!user.getPassword().equals(password)){
-//            model.addAttribute("message","Пароли не совпадают!");
-//            return "registration";
-//        }
-        if (userFromDb != null){
-            model.addAttribute("message","Данный пользователь уже зарегистрирован");
+
+        if (!user.getPassword().equals(repeatPassword)){
+            model.addAttribute("message","Пароли не совпадают!");
             return "registration";
         }
+
+        if (userFromDb != null){
+            model.addAttribute("message","Данный никнейм уже занят!");
+            return "registration";
+        }
+
+        userFromDb = userRepository.findByEmail(user.getEmail());
+
+        if (userFromDb != null){
+            model.addAttribute("message","Данная почта уже занята!");
+            return "registration";
+        }
+
         user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
         userRepository.save(user);

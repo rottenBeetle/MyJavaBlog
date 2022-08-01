@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Авторизация</title>
@@ -95,50 +95,54 @@
                                     <p class="text-white-50 mb-5">Пожалуйста введите почту и пароль</p>
 
                                     <div class="form-outline form-white mb-4">
-                                        <!-- <label class="form-label" for="typePasswordX">Password</label>-->
                                         <input name="username" type="text" id="typeUsernameX" placeholder="Ваш никнейм"
                                                class="form-control form-control-lg"/>
                                     </div>
 
                                     <div class="form-outline form-white mb-4">
-                                        <!-- <label class="form-label" for="typeEmailX">Email</label>-->
                                         <input name="email" type="email" id="typeEmailX" placeholder="Введите почту"
                                                class="form-control form-control-lg"/>
                                     </div>
 
                                     <div class="form-outline form-white mb-4">
-                                        <!-- <label class="form-label" for="typePasswordX">Password</label>-->
-                                        <input name="password" type="password" id="typePasswordX" placeholder="Введите пароль"
+                                        <input name="password" type="password" id="typePasswordX"
+                                               placeholder="Введите пароль"
                                                class="form-control form-control-lg"/>
                                     </div>
 
-<!--                                    <div class="form-outline form-white mb-4">-->
-<!--                                        &lt;!&ndash; <label class="form-label" for="typePasswordX">Password</label>&ndash;&gt;-->
-<!--                                        <input name="passwordRepeat" type="password" id="typePasswordXRepeat" placeholder="Повторите пароль"-->
-<!--                                               class="form-control form-control-lg"/>-->
-<!--                                    </div>-->
-
-                                    <div th:if="${message}">
-                                        <p class="mb-0" th:value="${message}"></p>
-                                        <option th:value="${item.id}" th:text="${item}"></option>
+                                    <div class="form-outline form-white mb-4">
+                                        <input name="repeatPassword" type="password" id="repeatPassword"
+                                               placeholder="Повторите пароль"
+                                               class="form-control form-control-lg"/>
                                     </div>
 
+                                    <div th:if="${message != null}">
+                                        <p class="mb-0" th:text="${message}"></p>
+                                    </div>
+                                    <br>
                                     <div>
-                                        <button class="btn btn-outline-light btn-lg px-5" type="submit">Зарегистрироваться</button>
+                                        <button class="btn btn-outline-light btn-lg px-5" type="submit">
+                                            Зарегистрироваться
+                                        </button>
                                     </div>
+                                    <br>
 
                                     <div class="d-flex justify-content-center text-center mt-4 pt-1">
-                                    <div class="social vk">
-                                        <a href="#" target="_blank"><i class="fa fa-vk fa-2x"></i></a>
-                                    </div>
-                                    <div class="social github">
-                                        <a href="#" target="_blank"><i class="fa fa-github fa-2x"></i></a>
-                                    </div>
-                                    <div class="social google-pluse">
-                                        <a href="#" target="_blank"><i class="fa fa-google-plus fa-2x"></i></a>
+                                        <div class="social vk">
+                                            <a href="#" target="_blank"><i class="fa fa-vk fa-2x"></i></a>
+                                        </div>
+                                        <div class="social github">
+                                            <a href="#" target="_blank"><i class="fa fa-github fa-2x"></i></a>
+                                        </div>
+                                        <div class="social google-pluse">
+                                            <a href="#" target="_blank"><i class="fa fa-google-plus fa-2x"></i></a>
+                                        </div>
                                     </div>
                                 </div>
-
+                                <div>
+                                    <p class="mb-0">Уже зарегестрированны?<a th:href="@{/login}"
+                                                                             class="text-white-50 fw-bold">
+                                        Войти в аккаунт</a></p>
                                 </div>
                             </div>
                         </div>
