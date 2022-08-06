@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Авторизация</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <style>
+        .gradient-custom {
+            /* fallback for old browsers */
+            background: #6a11cb;
+
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+        }
+    </style>
+    <style>
+        @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
+
+        .social a {
+            text-align: center;
+            width: 48px;
+            height: 48px;
+            float: left;
+            background: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15), inset 0 0 50px rgba(0, 0, 0, 0.1);
+            border-radius: 24px;
+            margin: 0 10px 10px 0;
+            padding: 6px;
+            color: #000;
+        }
+
+        .github a:hover {
+            background: #191919;
+            color: #fff;
+        }
+
+        .google-pluse a:hover {
+            background: #DD4B39;
+            color: #fff;
+        }
+
+        .twitter a:hover {
+            background: #00acee;
+            color: #fff;
+        }
+
+        .instagram a:hover {
+            background: #3f729b;
+            color: #fff;
+        }
+
+        .facebook a:hover {
+            background: #3b5998;
+            color: #fff;
+        }
+
+        .vk a:hover {
+            background: #5d84ae;
+            color: #fff;
+        }
+
+        .odnoklassniki a:hover {
+            background: #f93;
+            color: #fff;
+        }
+
+        .telegram a:hover {
+            background: #249bd7;
+            color: #fff;
+        }
+
+        .whatsapp a:hover {
+            background: #50b154;
+            color: #fff;
+        }
+    </style>
+</head>
+<body class="text-center">
+        <section class="vh-100 gradient-custom">
+            <div class="container py-5 h-80">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                        <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                            <div class="card-body p-5 text-center">
+                                <div class="mb-md-5 mt-md-4 pb-5">
+                                    <h1 align="center">Подтвердите аккаунт!</h1>
+                                    <h4 th:text="'Ссылка для активации отправлена на почту - ' + ${user.email} " ></h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+</body>
+</html>

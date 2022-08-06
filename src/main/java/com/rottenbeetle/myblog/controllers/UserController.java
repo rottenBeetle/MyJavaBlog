@@ -36,6 +36,21 @@ public class UserController {
         return "user-edit";
     }
 
+    @GetMapping("delete/{user}")
+    public String deleteUser(@PathVariable User user){
+        userRepository.delete(user);
+        return "redirect:/user/list";
+    }
+
+    @GetMapping("block/{user}")
+    public String blockUser(@PathVariable User user){
+
+        user.setActive(!user.isActive());
+
+        userRepository.save(user);
+        return "redirect:/user/list";
+    }
+
     @PostMapping
     public String userSave(
             @RequestParam String username,

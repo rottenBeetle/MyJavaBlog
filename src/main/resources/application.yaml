@@ -1,4 +1,12 @@
 spring:
+
+  mail:
+    host: smtp.yandex.ru
+    username: course.x@yandex.ru
+    password: 
+    port: 465
+    protocol: smtps
+
   jpa:
     hibernate:
       ddl-auto: update
@@ -9,3 +17,5 @@ spring:
       username: postgres
       password: defender
 
+mail:
+  debug: true
